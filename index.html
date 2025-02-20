@@ -13,7 +13,7 @@
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <title>Tanks</title>
+  <title>Trees</title>
    <style>
     :not(:defined) > * {
       display: none;
@@ -294,7 +294,7 @@
   </style>
 </head>
 <body>
-  <model-viewer src="./models/EBRCJaguarInfantry/EBRCJaguarInfantry.glb" ios-src="./models/EBRCJaguarInfantry/EBRCJaguarInfantry.usdz"
+  <model-viewer src="./models/Joshuatree/Joshuatree.glb" ios-src="./models/Joshuatree/Joshuatree.usdz"
   style="width: 100vw; height: 100vh;" camera-controls shadow-intensity="2" touch-action="pan-y" ar scale="8 8 8">
 
   <button id="info-icon"><i class="fas fa-info"></i></button>
@@ -303,10 +303,10 @@
   <div class="slider">
     <div class="slides">
       <!-- First Model -->
-      <button class="slide selected" onclick="switchSrc(this, './models/EBRCJaguarInfantry', 'Joshuatree', 'EBRC Jaguar Infantry')" style="background-image: url('./models/EBRCJaguarInfantry/EBRCJaguarInfantry.png');"></button>
+      <button class="slide selected" onclick="switchSrc(this, './models/Joshuatree', 'Joshuatree', 'Joshua Tree')" style="background-image: url('./models/Joshuatree/Joshuatree.png');"></button>
 
        <!-- Second Model -->
-       <button class="slide" onclick="switchSrc(this, './models/BMW_X6', '2015_BMW_X6', 'BMW X6 2015')" style="background-image: url('./models/BMW_X6/2015_BMW_X6.png');"></button>
+       <button class="slide" onclick="switchSrc(this, './models/MagnificentAngelsTrumpet', 'MagnificentAngelsTrumpet', 'Magnificent Angels Trumpet')" style="background-image: url('./models/MagnificentAngelsTrumpet/MagnificentAngelsTrumpet.png');"></button>
  
       
 
@@ -330,15 +330,19 @@ const infoDisplay = document.getElementById("info-display");
 
 // Object storing car names and descriptions
 const infoText = {
-  "EBRC Jaguar Infantry": {
-    title: "EBRC Jaguar Infantry",
-    description: "• CTA 40mm autocannon can fire airburst and armor-piercing rounds.\n• 7.62mm remote-controlled machine gun for additional firepower."
+  "Joshua Tree": {
+    title: "Joshua Tree",
+    description: "• Twisted, spiky branches with dagger-like green leaves. \n• Can grow up to 40 feet (12 meters) tall."
+  },
+  "Magnificent Angels Trumpet": {
+    title: "Magnificent Angels Trumpet",
+    description: "• Large, trumpet-shaped flowers (up to 20 inches long). \n• Strong, sweet fragrance, especially in the evening."
   }
 
 };
 
 // Store the current car name
-let currentCarName = "EBRC Jaguar Infantry";
+let currentCarName = "Joshua Tree";
 
 // Toggle info display with GSAP animation
 infoIcon.addEventListener("click", () => {
