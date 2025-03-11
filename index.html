@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/android-chrome-512x512.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/android-chrome-192x192.png">
@@ -49,6 +48,29 @@
       transform: scale(1.1);
     }
 
+    /* Camera icon button */
+    #screenshot-button {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: linear-gradient(135deg, #fbbc05, #f1c40f);
+      color: white;
+      font-size: 21px;
+      width: 50px;
+      height: 50px;
+      padding: 10px;
+      border: none;
+      border-radius: 50%;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
+
+    #screenshot-button:hover {
+      background: linear-gradient(135deg, #f1c40f, #fbbc05);
+      transform: scale(1.1);
+    }
+
     /* Modern Info Box */
     #info-display {
       position: absolute;
@@ -81,17 +103,333 @@
       color: #555;
     }
 
-    /* Fade-in animation */
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    /* Skybox toggle button */
+    #toggle-skybox-button {
+      position: absolute;
+      top: 80px;
+      left: 16px;
+      background: linear-gradient(135deg, #6c63ff, #7c4dff);
+      color: white;
+      font-size: 21px;
+      width: 50px;
+      height: 50px;
+      padding: 10px;
+      border: none;
+      border-radius: 50%;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
     }
+
+    #toggle-skybox-button:hover {
+      background: linear-gradient(135deg, #7c4dff, #6c63ff);
+      transform: scale(1.1);
+    }
+
+    /* Container for the popup */
+#skybox-popup {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+  max-width: 600px;
+  width: 90%;
+  text-align: center;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+/* Hover and focus effect for the close button */
+.close-btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  transform: scale(1.1);
+  color: #ff0000;
+}
+
+.close-btn:focus {
+  outline: none;
+}
+
+/* Title */
+h3 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Skybox image container */
+.skybox-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+/* Individual skybox images */
+.skybox-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover effect for images */
+.skybox-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Optional active state to highlight the selected image */
+.skybox-img.selected {
+  border: 2px solid #ff0000;
+  box-shadow: 0px 8px 16px rgba(255, 0, 0, 0.3);
+}
+
+ /* Modern close button styling */
+ .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: #fff; /* White icon color */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.3); /* Slightly transparent dark background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Audio Icon */
+#audio-icon,#heart-icon,#music-icon,#setting-icon,#tree-icon{
+  position: absolute;
+  width: 53px;
+  height: 53px;
+  top: 80px;
+  right: 15px;
+  background: linear-gradient(135deg, #ff0099, #a84983);
+  border-radius: 50%; 
+  border: none;
+  cursor: pointer;
+  font-size: 21px; 
+  color: #ffffff; 
+  transition: all 0.3s ease; 
+}
+
+#audio-icon:hover {
+  transform: scale(1.1); 
+}
+
+#tree-icon{
+  top: 210px;
+  left: 15px;
+  font-size: 25px; 
+  background: linear-gradient(135deg, #19ad8d, #0ea17a); 
+}
+
+#tree-icon:hover {
+  transform: scale(1.1); 
+}
+
+#heart-icon{
+  top: 145px;
+  left: 15px;
+  font-size: 26px; 
+  background: linear-gradient(135deg, #ff4d6d, #ff7a8d);
+}
+
+#heart-icon:hover {
+  background: linear-gradient(135deg, #ff4081, #ff80ab); /* Slightly different gradient when hovered */
+  transform: scale(1.1); /* Slight scale-up effect */
+}
+
+#music-icon{
+  top: 145px;
+  right: 15px;
+  font-size: 23px; 
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+}
+
+#music-icon:hover {
+  background: linear-gradient(135deg, #009efd,  #0965d4);
+  transform: scale(1.1); /* Slight scale-up effect */
+}
+
+#setting-icon{
+  top: 210px;
+  right: 15px;
+  font-size: 23px; 
+  background: linear-gradient(135deg, #fc4a1a, #e35e39);
+}
+
+#setting-icon:hover {
+  background: linear-gradient(135deg, #e13d0f, #a72c0a);
+  transform: scale(1.1); /* Slight scale-up effect */
+}
+
+/* Popup Background */
+.popup-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Settings Popup */
+    .controls {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+      width: 300px;
+      text-align: center;
+      position: relative;
+    }
+
+    /* Close Button Setting */
+    #close-btn-setting{
+      width: 35px;
+      height: 35px;
+    }
+
+    input[type="range"] {
+      width: 100%;
+    }
+
+/* Styling for the Texture Selection Checkboxes */
+.texture-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+    justify-content: space-between;
+}
+
+.texture-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f4f4f4;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border: 2px solid transparent;
+}
+
+.texture-label:hover {
+    background: #e0e0e0;
+}
+
+.texture-checkbox {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #007bff;
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.texture-checkbox:checked {
+    border: 1px solid #007bff;
+}
+
+.texture-checkbox:checked::after {
+    content: '✅';
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Popup Styles */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: none;
+    width: 350px;
+    text-align: center;
+}
+
+.popup.active {
+    display: block;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #555;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+    color: #000;
+}
+
+
+
+
 
     .slider {
       width: 100%;
@@ -139,6 +477,33 @@
     div#info-display p.carinfo{
      font-size: 17px;
     }
+
+    /* Styling of AR Button */
+
+  .transparent {
+    background-color: transparent;
+    border-radius: 50%;
+    border: none;
+    position: relative;
+    width: 65px;
+    height: 65px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10; /* Ensure it's above other elements */
+  }
+
+  .ar-icon {
+    position: absolute;
+    top: 110px;
+    left: 0px;
+  }
+
+
+  
+
+ 
+
+
 
   /* Responsive for Tablets */
   @media (max-width: 768px) {
@@ -226,26 +591,6 @@
 
   }
 
-  /* Styling of AR Button */
-
-  .transparent {
-    background-color: transparent;
-    border-radius: 50%;
-    border: none;
-    position: relative;
-    width: 65px;
-    height: 65px;
-    padding: 10px;
-    cursor: pointer;
-    z-index: 10; /* Ensure it's above other elements */
-  }
-
-  .ar-icon {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-  }
-
   /* Responsive Design for AR Button (Laptops/PC) */
   @media (max-width: 1500px) {
     /* Adjust size and positioning for mobile */
@@ -254,10 +599,10 @@
     }
 
     .ar-icon {
-      width: 73px; /* Smaller size for mobile */
-      height: 73px;
-      left: 0px;
-      top: -3.3px;
+      width: 58px; /* Smaller size for mobile */
+      height: 58px;
+      left: 5px;
+      top: 270px;
     }
   }
 
@@ -269,10 +614,10 @@
     }
 
     .ar-icon {
-      width: 66px; /* Slightly smaller for tablets */
-      height: 66px;
-      left: 0px;
-      top: -1px;
+      width: 55px; /* Slightly smaller for tablets */
+      height: 55px;
+      left: 5px;
+      top: 270px;
     }
   }
 
@@ -284,10 +629,10 @@
     }
 
     .ar-icon {
-      width: 57px; /* Smaller size for mobile */
-      height: 57px;
-      left: 0px;
-      top: 0px;
+      width: 55px; /* Smaller size for mobile */
+      height: 55px;
+      left: 5px;
+      top: 270px;
     }
   }
 
@@ -295,10 +640,96 @@
 </head>
 <body>
   <model-viewer src="./models/Joshuatree/Joshuatree.glb" ios-src="./models/Joshuatree/Joshuatree.usdz"
-  style="width: 100vw; height: 100vh;" camera-controls shadow-intensity="2" touch-action="pan-y" ar scale="8 8 8">
+  style="width: 100vw; height: 100vh;" camera-controls exposure="1" shadow-intensity="7" touch-action="pan-y" ar scale="8 8 8" >
 
   <button id="info-icon"><i class="fas fa-info"></i></button>
   <div id="info-display"></div>
+
+  <!-- Benefits Feature -->
+  <button id="audio-icon">
+    <i class="fas fa-play"></i>
+  </button>
+
+  <!-- Heart Icon  -->
+  <button id="heart-icon">
+    <i class="fa-solid fa-heart"></i>
+  </button>
+
+  <!-- Trees Icon  -->
+  <a href="https://www.givemetrees.org/">
+    <button id="tree-icon">
+      <i class="fa-solid fa-tree"></i>
+    </button>
+  </a>
+
+  <!-- Backgroound Music  -->
+  <button id="music-icon">
+    <i class="fa-solid fa-volume-off"></i>
+  </button>
+
+  <!-- Setting -->
+  <button id="setting-icon">
+    <i class="fa-solid fa-gear"></i>
+  </button>
+
+  <!-- Popup -->
+  <div class="popup-bg" id="popup-bg">
+    <div class="controls">
+      <button class="close-btn" id="close-btn-setting">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+    <!-- Texture Selection -->
+    <div>
+      <p>Select Textures:</p>
+      <div id="texture-container" class="texture-container">
+        <!-- Checkboxes will be added dynamically here -->
+      </div>
+    </div>
+
+      <div>
+        <p>Metalness: <span id="metalness-value">1</span></p>
+        <input id="metalness" type="range" min="0" max="1" step="0.01" value="0">
+      </div>
+      <div>
+        <p>Roughness: <span id="roughness-value">0</span></p>
+        <input id="roughness" type="range" min="0" max="1" step="0.01" value="0">
+      </div>
+    </div>
+  </div>
+
+  <button id="screenshot-button">
+    <i class="fas fa-camera"></i>
+  </button> <!-- Camera Icon Button -->
+
+  <button id="toggle-skybox-button">
+    <i class="fas fa-image"></i>
+  </button> <!-- Button to Toggle Skybox -->
+
+   <!-- Skybox Selection Popup -->
+<div id="skybox-popup">
+
+  <!-- Close button with Font Awesome icon -->
+  <button id="close-btn" class="close-btn">
+    <i class="fas fa-times"></i> <!-- Font Awesome close icon -->
+  </button>
+
+  <h3>Select an Environment</h3>
+
+  <div id="skybox-container" class="skybox-container">
+    <img src="./assets/Meadow2.jpg" alt="Meadow 2" class="skybox-img">
+    <img src="./assets/DrackensteinQuarry.jpg" alt="Drackenstein Quarry" class="skybox-img">
+    <img src="./assets2/RuralAsphaltRoad.jpg" alt="Rural Asphalt Road" class="skybox-img">
+    <img src="./assets2/SymmetricalGarden2.jpg" alt="Symmetrical Garden 2" class="skybox-img">
+    <img src="./assets3/AlpsField.jpg" alt="Alps Field" class="skybox-img">
+    <img src="./assets3/Lilienstein.jpg" alt="Lilienstein" class="skybox-img">
+    <img src="./assets4/J&EGray02.jpg" alt="J&E Gray 02" class="skybox-img">
+    <img src="./assets3/goegap.jpg" alt="Goegap" class="skybox-img">
+    <img src="./assets5/RestingPlace2.jpg" alt="Resting Place 2" class="skybox-img">
+    <img src="./assets5/EveningMeadow.jpg" alt="Evening Meadow" class="skybox-img">
+  </div>
+</div>
+
 
   <div class="slider">
     <div class="slides">
@@ -306,11 +737,10 @@
       <button class="slide selected" onclick="switchSrc(this, './models/Joshuatree', 'Joshuatree', 'Joshua Tree')" style="background-image: url('./models/Joshuatree/Joshuatree.png');"></button>
 
        <!-- Second Model -->
-       <button class="slide" onclick="switchSrc(this, './models/MagnificentAngelsTrumpet', 'MagnificentAngelsTrumpet', 'Magnificent Angels Trumpet')" style="background-image: url('./models/MagnificentAngelsTrumpet/MagnificentAngelsTrumpet.png');"></button>
- 
-      
+       <button class="slide" onclick="switchSrc(this, './models/DatePalm', 'DatePalm', 'Date Palm')" style="background-image: url('./models/DatePalm/DatePalm.png');"></button>
 
-
+       <!-- Third Model -->
+       <button class="slide" onclick="switchSrc(this, './models_2/BlueJacaranda', 'BlueJacaranda', 'Blue Jacaranda')" style="background-image: url('./models_2/BlueJacaranda/BlueJacaranda.png');"></button>
 
     </div>
   </div>
@@ -318,92 +748,367 @@
   <button slot="ar-button" 
         style="background-color: transparent; border-radius: 50%; border: none; position: absolute; top: 10px; left: 10px; padding: 10px; cursor: pointer;" 
         class="transparent">
-  <img src="./assets/AR_Placer.png" width="40px" height="40px" class="ar-icon">
+  <img src="./assets/ar.png" width="69px" height="69px" class="ar-icon">
   </button>
 
   </model-viewer>
 
+
 <script type="module">
+
   const modelViewer = document.querySelector("model-viewer");
-const infoIcon = document.getElementById("info-icon");
-const infoDisplay = document.getElementById("info-display");
+  const infoIcon = document.getElementById("info-icon");
+  const infoDisplay = document.getElementById("info-display");
+  const screenshotButton = document.getElementById("screenshot-button");
+  const toggleSkyboxButton = document.getElementById("toggle-skybox-button");
+  const skyboxPopup = document.getElementById("skybox-popup");
+  const closeBtn = document.getElementById("close-btn");
+  const closeBtnSetting = document.getElementById("close-btn-setting");
+  const audioIcon = document.getElementById("audio-icon");
+  const musicIcon = document.getElementById("music-icon");
+  const heartIcon = document.getElementById("heart-icon");
+  const settingIcon = document.getElementById("setting-icon");
+  const popupBg = document.getElementById("popup-bg");
 
-// Object storing car names and descriptions
-const infoText = {
-  "Joshua Tree": {
-    title: "Joshua Tree",
-    description: "• Twisted, spiky branches with dagger-like green leaves. \n• Can grow up to 40 feet (12 meters) tall."
-  },
-  "Magnificent Angels Trumpet": {
-    title: "Magnificent Angels Trumpet",
-    description: "• Large, trumpet-shaped flowers (up to 20 inches long). \n• Strong, sweet fragrance, especially in the evening."
-  }
+  // For Setting Feature
+  const textureContainer = document.getElementById("texture-container");
+  const metalnessSlider = document.getElementById("metalness");
+  const roughnessSlider = document.getElementById("roughness");
+  const metalnessValue = document.getElementById("metalness-value");
+  const roughnessValue = document.getElementById("roughness-value");
 
-};
 
-// Store the current car name
-let currentCarName = "Joshua Tree";
+  // Setting Feature
+  modelViewer.addEventListener("load", () => {
+        let materials = modelViewer.model.materials;
 
-// Toggle info display with GSAP animation
-infoIcon.addEventListener("click", () => {
-  if (infoDisplay.style.display === "none" || !infoDisplay.style.display) {
-    infoDisplay.style.display = "block"; // Ensure it's visible for animation
-    infoDisplay.innerHTML = `<h3 class='carname'">${infoText[currentCarName].title}</h3><p class="carinfo">${infoText[currentCarName].description}</p>`;
-    gsap.fromTo(
-      infoDisplay,
-      { y: -20, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }
-    );
-  } else {
-    gsap.to(infoDisplay, {
-      y: -20,
-      opacity: 0,
-      duration: 0.5,
-      ease: "power3.in",
-      onComplete: () => {
-        infoDisplay.style.display = "none"; // Hide after animation
+        textureContainer.innerHTML = ""; // Clear previous checkboxes
+
+        // Store default values of metalness & roughness for reset
+        let defaultValues = materials.map(material => ({
+            metallicFactor: material.pbrMetallicRoughness.metallicFactor,
+            roughnessFactor: material.pbrMetallicRoughness.roughnessFactor
+        }));
+
+        // Dynamically generate checkboxes based on material count
+        materials.forEach((material, index) => {
+            let label = document.createElement("label");
+            label.innerHTML = `<input type="checkbox" class="texture-checkbox" value="${index}"> Texture ${index + 1}`;
+            textureContainer.appendChild(label);
+        });
+
+        function getSelectedMaterials() {
+            let selectedIndices = Array.from(document.querySelectorAll(".texture-checkbox:checked"))
+                .map((cb) => parseInt(cb.value));
+
+            return selectedIndices.map((index) => ({ material: materials[index], index }));
+        }
+
+        function updateSliders(selectedMaterials) {
+            if (selectedMaterials.length === 0) {
+                // Reset to default if nothing is selected
+                metalnessSlider.value = 0.5;
+                roughnessSlider.value = 0.5;
+                metalnessValue.textContent = "0.5";
+                roughnessValue.textContent = "0.5";
+            } else {
+                let material = selectedMaterials[0].material;
+                metalnessSlider.value = material.pbrMetallicRoughness.metallicFactor;
+                roughnessSlider.value = material.pbrMetallicRoughness.roughnessFactor;
+                metalnessValue.textContent = material.pbrMetallicRoughness.metallicFactor;
+                roughnessValue.textContent = material.pbrMetallicRoughness.roughnessFactor;
+            }
+        }
+
+        // Checkbox Change Event (Handles Check + Uncheck)
+        textureContainer.addEventListener("change", (event) => {
+            let selectedMaterials = getSelectedMaterials();
+
+            if (!event.target.checked) {
+                // If unchecking, reset to original values
+                let index = parseInt(event.target.value);
+                materials[index].pbrMetallicRoughness.setMetallicFactor(defaultValues[index].metallicFactor);
+                materials[index].pbrMetallicRoughness.setRoughnessFactor(defaultValues[index].roughnessFactor);
+            }
+
+            updateSliders(selectedMaterials);
+        });
+
+        // Metalness Slider Event
+        metalnessSlider.addEventListener("input", (event) => {
+            let selectedMaterials = getSelectedMaterials();
+            selectedMaterials.forEach(({ material }) => {
+                material.pbrMetallicRoughness.setMetallicFactor(parseFloat(event.target.value));
+            });
+            metalnessValue.textContent = event.target.value;
+        });
+
+        // Roughness Slider Event
+        roughnessSlider.addEventListener("input", (event) => {
+            let selectedMaterials = getSelectedMaterials();
+            selectedMaterials.forEach(({ material }) => {
+                material.pbrMetallicRoughness.setRoughnessFactor(parseFloat(event.target.value));
+            });
+            roughnessValue.textContent = event.target.value;
+        });
+    });
+
+
+ // Show popup on settings button click
+ settingIcon.addEventListener("click", () => {
+    popupBg.style.display = "flex";
+  });
+
+  // Hide popup when clicking outside or pressing close button
+  closeBtnSetting.addEventListener("click", () => {
+    popupBg.style.display = "none";
+  });
+
+    popupBg.addEventListener("click", (event) => {
+      if (event.target === popupBg) {
+        popupBg.style.display = "none";
       }
     });
-  }
-});
 
-// Switch car model and update info display
-window.switchSrc = (element, foldername, name, carName) => {
-  const base = `/${foldername}/${name}`;
-  modelViewer.src = base + ".glb";
-  modelViewer.poster = base + ".png";
-  modelViewer.iosSrc = base + ".usdz";
-
-  // Update the car name
-  currentCarName = carName;
-
-  const slides = document.querySelectorAll(".slide");
-  slides.forEach((slide) => slide.classList.remove("selected"));
-  element.classList.add("selected");
-
-  // If info is visible, animate update
-  if (infoDisplay.style.display === "block") {
-    gsap.to(infoDisplay, {
-      y: -10,
-      opacity: 0,
-      duration: 0.3,
-      ease: "power1.in",
-      onComplete: () => {
-        infoDisplay.innerHTML = `<h3>${infoText[currentCarName].title}</h3><p>${infoText[currentCarName].description}</p>`;
-        gsap.fromTo(
-          infoDisplay,
-          { y: 10, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.3, ease: "power1.out" }
-        );
-      }
+    // Update values dynamically
+    document.getElementById("metalness").addEventListener("input", function () {
+      document.getElementById("metalness-value").textContent = this.value;
     });
-  }
-};
 
-// Prevent XR interaction issues with the slider
-document.querySelector(".slider").addEventListener("beforexrselect", (ev) => {
-  ev.preventDefault();
-});
+    document.getElementById("roughness").addEventListener("input", function () {
+      document.getElementById("roughness-value").textContent = this.value;
+  });
+
+
+  // Store the loved state for each model in localStorage
+  const lovedModels = JSON.parse(localStorage.getItem('lovedModels')) || {};
+
+  let skyboxEnabled = false;
+  let currentAudio = null; // Store the current audio object
+  let isPlaying = false; // Track if audio is currently playing
+  let currentMusicAudio = null; 
+  let isMusicPlaying = false; 
+
+  // Object storing tree names, descriptions, and audio sources
+  const infoText = {
+    "Joshua Tree": {
+      title: "Joshua Tree",
+      description: "• Twisted, spiky branches with dagger-like green leaves. \n• Can grow up to 40 feet (12 meters) tall.",
+      audioSrc: "./audio/Joshuatree.mp3"
+    },
+    "Date Palm": {
+      title: "Date Palm",
+      description: "• Large, trumpet-shaped flowers (up to 20 inches long). \n• Strong, sweet fragrance, especially in the evening.",
+      audioSrc: "./audio/MagnificentAngelsTrumpet.mp3"
+    },
+    "Blue Jacaranda": {
+      title: "Blue Jacaranda",
+      description: "• Beautiful, bell-shaped flowers in shades of purple and blue.  \n• Large clusters of blooms that attract bees and butterflies.",
+      audioSrc: "./audio/BlueJacaranda.mp3"
+    }
+  };
+
+  let musicList = [
+    "./",
+    "./"
+  ]
+
+
+  // Heart Icon: Toggle between default and red heart
+  heartIcon.addEventListener("click", () => {
+    const heart = heartIcon.querySelector("i");
+
+    if (heart.style.color === "rgb(230, 15, 47)") { // Check if the heart is red
+      heart.style.color = ""; // Remove red color to revert to default
+    } else {
+      heart.style.color = "#dc143c"; // Change the heart color to red
+    }
+  });
+
+  // Store the current tree name
+  let currentCarName = "Joshua Tree";
+
+  // Toggle info display with GSAP animation
+  infoIcon.addEventListener("click", () => {
+    if (infoDisplay.style.display === "none" || !infoDisplay.style.display) {
+      infoDisplay.style.display = "block"; // Ensure it's visible for animation
+      infoDisplay.innerHTML = `<h3 class='carname'>${infoText[currentCarName].title}</h3><p class="carinfo">${infoText[currentCarName].description}</p>`;
+      gsap.fromTo(
+        infoDisplay,
+        { y: -20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }
+      );
+    } else {
+      gsap.to(infoDisplay, {
+        y: -20,
+        opacity: 0,
+        duration: 0.5,
+        ease: "power3.in",
+        onComplete: () => {
+          infoDisplay.style.display = "none"; // Hide after animation
+        }
+      });
+    }
+  });
+
+  // Benefits Feature
+  audioIcon.addEventListener("click", () => {
+    if (isPlaying) {
+      currentAudio.pause();
+      audioIcon.innerHTML = '<i class="fas fa-play"</i>';
+      isPlaying = false;
+    } else {
+      if (!currentAudio) {
+        // Create a new audio element if it doesn't exist
+        currentAudio = new Audio(infoText[currentCarName].audioSrc);
+        currentAudio.play();
+      } else {
+        currentAudio.play();
+      }
+      audioIcon.innerHTML = '<i class="fas fa-pause"></i>';
+      isPlaying = true;
+    }
+  });
+
+  // Music Feature
+  musicIcon.addEventListener("click", () => {
+    if (isMusicPlaying) {
+      currentMusicAudio.pause();
+      musicIcon.innerHTML = '<i class="fas fa-volume-off"</i>';
+      isMusicPlaying = false;
+    } else {
+      if (!currentAudio) {
+        // Create a new audio element if it doesn't exist
+        currentMusicAudio = new Audio(Math.floor(Math.random() * musicList.length));
+        currentMusicAudio.play();
+      } else {
+        currentMusicAudio.play();
+      }
+      musicIcon.innerHTML = '<i class="fas fa-volume-high"></i>';
+      isMusicPlaying = true;
+    }
+  });
+
+  // Switch tree model and update info display
+  window.switchSrc = (element, foldername, name, carName, audioSrc) => {
+    const base = `/${foldername}/${name}`;
+    modelViewer.src = base + ".glb";
+    modelViewer.poster = base + ".png";
+    modelViewer.iosSrc = base + ".usdz";
+
+    // Update the tree name
+    currentCarName = carName;
+
+    // Add heart icon dynamically and check if the model is loved
+    addHeartIcon(name);
+
+    // Update the audio source
+    if (currentAudio) {
+      currentAudio.pause();
+    }
+    currentAudio = new Audio(audioSrc);
+
+    const slides = document.querySelectorAll(".slide");
+    slides.forEach((slide) => slide.classList.remove("selected"));
+    element.classList.add("selected");
+
+    // If info is visible, animate update
+    if (infoDisplay.style.display === "block") {
+      gsap.to(infoDisplay, {
+        y: -10,
+        opacity: 0,
+        duration: 0.3,
+        ease: "power1.in",
+        onComplete: () => {
+          infoDisplay.innerHTML = `<h3>${infoText[currentCarName].title}</h3><p>${infoText[currentCarName].description}</p>`;
+          gsap.fromTo(
+            infoDisplay,
+            { y: 10, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.3, ease: "power1.out" }
+          );
+        }
+      });
+    }
+  };
+
+
+  // Function to dynamically add the heart icon button and check if it's loved
+  function addHeartIcon(modelName) {
+    // Create heart icon button
+    const heartIconButton = document.createElement("button");
+    heartIconButton.id = "heart-icon";
+    heartIconButton.classList.add("heart-button");
+    heartIconButton.innerHTML = `<i class="fa-solid fa-heart"></i>`;
+
+    // Check if the model has been loved before
+    if (lovedModels[modelName]) {
+      heartIconButton.innerHTML = `<i class="fa-solid fa-heart" style="color: #e60f2f;"></i>`;
+    }
+
+    // Add event listener to toggle love status
+    heartIconButton.addEventListener("click", () => {
+      if (lovedModels[modelName]) {
+        // Unlove the model
+        lovedModels[modelName] = false;
+        heartIconButton.innerHTML = `<i class="fa-solid fa-heart"></i>`;
+      } else {
+        // Love the model
+        lovedModels[modelName] = true;
+        heartIconButton.innerHTML = `<i class="fa-solid fa-heart" style="color: #e60f2f;"></i>`;
+      }
+
+      // Save the loved state to localStorage
+      localStorage.setItem("lovedModels", JSON.stringify(lovedModels));
+    });
+
+    // Append heart icon below the info display
+    const infoDisplay = document.getElementById("info-display");
+    infoDisplay.parentNode.appendChild(heartIconButton); // Append below info display
+  }
+
+  // Handle screenshot functionality
+  screenshotButton.addEventListener("click", () => {
+    if (modelViewer.toDataURL) {
+      const imageUrl = modelViewer.toDataURL('image/png'); // Capture the screenshot as a PNG
+      const link = document.createElement("a");
+      link.href = imageUrl;
+      link.download = "Trees.png";
+      link.click();
+    } else {
+      alert("Screenshot functionality is not supported by this model viewer.");
+    }
+  });
+
+  // Show the skybox selection popup when button is clicked
+  toggleSkyboxButton.addEventListener("click", () => {
+    skyboxPopup.style.display = "block";
+  });
+
+  document.getElementById('skybox-container').addEventListener('click', function(event) {
+    if (event.target.tagName === 'IMG') {
+      changeSkybox(event.target.src);
+    }
+  });
+
+  function changeSkybox(skyboxImage) {
+    if (skyboxEnabled) {
+      modelViewer.removeAttribute("skybox-image");
+      modelViewer.setAttribute("exposure", "1");
+      skyboxEnabled = false;
+      toggleSkyboxButton.innerHTML = '<i class="fas fa-image"></i>';
+    } else {
+      modelViewer.setAttribute("skybox-image", skyboxImage);
+      modelViewer.setAttribute("exposure", "4");
+      skyboxEnabled = true;
+      toggleSkyboxButton.innerHTML = '<i class="fas fa-image"></i>';
+    }
+  }
+
+  // Close skybox popup when the close button is clicked
+  closeBtn.addEventListener("click", () => {
+    skyboxPopup.style.display = "none"; 
+  });
+
 
 </script>
 </body>
