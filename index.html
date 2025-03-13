@@ -12,7 +12,7 @@
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <title>Trees</title>
+  <title>Treely</title>
    <style>
     :not(:defined) > * {
       display: none;
@@ -656,7 +656,7 @@ h3 {
   </button>
 
   <!-- Trees Icon  -->
-  <a href="https://www.givemetrees.org/">
+  <a href="https://www.givemetrees.org/" target="_blank">
     <button id="tree-icon">
       <i class="fa-solid fa-tree"></i>
     </button>
@@ -730,7 +730,6 @@ h3 {
   </div>
 </div>
 
-
   <div class="slider">
     <div class="slides">
       <!-- First Model -->
@@ -741,6 +740,12 @@ h3 {
 
        <!-- Third Model -->
        <button class="slide" onclick="switchSrc(this, './models_2/BlueJacaranda', 'BlueJacaranda', 'Blue Jacaranda')" style="background-image: url('./models_2/BlueJacaranda/BlueJacaranda.png');"></button>
+
+       <!-- Fourth Model -->
+       <button class="slide" onclick="switchSrc(this, './models_2/SourOrange', 'SourOrange', 'Sour Orange')" style="background-image: url('./models_2/SourOrange/SourOrange.png');"></button>
+
+       <!-- Fifth  Model -->
+       <button class="slide" onclick="switchSrc(this, './models_3/RedHorseChestnut', 'RedHorseChestnut', 'Red Horse Chestnut')" style="background-image: url('./models_3/RedHorseChestnut/RedHorseChestnut.png');"></button>
 
     </div>
   </div>
@@ -903,6 +908,16 @@ h3 {
     },
     "Blue Jacaranda": {
       title: "Blue Jacaranda",
+      description: "• Beautiful, bell-shaped flowers in shades of purple and blue.  \n• Large clusters of blooms that attract bees and butterflies.",
+      audioSrc: "./audio/BlueJacaranda.mp3"
+    },
+    "Sour Orange": {
+      title: "Orange Tree",
+      description: "• Beautiful, bell-shaped flowers in shades of purple and blue.  \n• Large clusters of blooms that attract bees and butterflies.",
+      audioSrc: "./audio/BlueJacaranda.mp3"
+    },
+    "Red Horse Chestnut": {
+      title: "Red Horse Chestnut",
       description: "• Beautiful, bell-shaped flowers in shades of purple and blue.  \n• Large clusters of blooms that attract bees and butterflies.",
       audioSrc: "./audio/BlueJacaranda.mp3"
     }
